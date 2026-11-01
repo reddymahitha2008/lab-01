@@ -1,6 +1,6 @@
 # Lab 01: Node.js and Express Server
 
-> **Deployed Live URL:** `https://<your-render-subdomain>.onrender.com` *(Placeholder: Replace with your actual Render deployment URL once deployed)*
+> **Deployed Live URL:** `https://lab-01-1gpc.onrender.com` **
 
 ---
 
