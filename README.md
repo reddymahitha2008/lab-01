@@ -189,42 +189,9 @@ In this lab assignment, we successfully:
 
 ---
 
-## 12. Viva Questions and Answers
 
-### Q1: What is Node.js, and how does it execute JavaScript outside the browser?
-**Answer:** Node.js is an open-source, cross-platform JavaScript runtime built on Google Chrome's V8 engine. It uses an event-driven, single-threaded, non-blocking I/O model (powered by `libuv`) which allows it to handle concurrent network connections efficiently without creating new threads for each connection.
 
-### Q2: What is the difference between Node's built-in `http` module and Express.js?
-**Answer:**
-- The built-in `http` module is a low-level API provided by Node.js. It requires developers to manually parse URLs, extract query parameters, set HTTP headers, and handle complex routing using nested `if-else` or `switch` blocks.
-- **Express.js** is a higher-level web framework built on top of the `http` module. It provides built-in routing (`app.get()`, `app.post()`), automated JSON serialization (`res.json()`), middleware support (`app.use()`), and cleaner syntax.
-
-### Q3: Why is the 404 middleware placed at the very end of `server.js`?
-**Answer:** In Express, middleware and route handlers execute sequentially in the order they are defined. When a request arrives, Express tests it against each route handler from top to bottom. If none of the defined routes match, the request trickles down to the final middleware. If the 404 handler were placed at the top, it would intercept every request, preventing any valid route from being reached.
-
-### Q4: Why do we use `process.env.PORT || 3000` instead of hardcoding `3000`?
-**Answer:** When deploying to cloud platforms like Render, Heroku, or AWS, the hosting provider assigns a dynamic port number to the containerized application via the `PORT` environment variable. Using `process.env.PORT || 3000` ensures the server listens on the cloud-assigned port in production, while falling back to port `3000` during local development.
-
-### Q5: What does `res.json()` do in Express?
-**Answer:** `res.json()` sends a JSON response. Under the hood, it converts the given JavaScript object or array into a JSON string using `JSON.stringify()`, automatically sets the `Content-Type` header to `application/json; charset=utf-8`, and terminates the response using `res.end()`.
-
-### Q6: What is the purpose of `package-lock.json` and why should it be committed to Git?
-**Answer:** `package-lock.json` records the exact versions of dependencies and sub-dependencies installed, along with their cryptographic integrity hashes. Committing it guarantees that every team member, CI/CD pipeline, and deployment server installs the exact same dependency tree, preventing "works on my machine" issues.
-
-### Q7: Why must `node_modules/` never be committed to Git?
-**Answer:**
-1. **Repository Size:** `node_modules` contains thousands of files and takes up hundreds of megabytes.
-2. **Platform Dependency:** Some packages contain platform-specific native C++ bindings that will not execute if compiled on Windows and deployed to Linux.
-3. **Reproducibility:** Anyone cloning the repository can recreate `node_modules` anytime by running `npm install` using `package.json` and `package-lock.json`.
-
-### Q8: What is the difference between `res.send()` and `res.end()`?
-**Answer:**
-- `res.end()` is a native Node.js method that terminates the response process quickly without setting extra headers.
-- `res.send()` is an Express method that accepts strings, objects, or buffers, automatically calculates and sets the `Content-Length` and appropriate `Content-Type` headers, and then calls `res.end()`.
-
----
-
-## 13. Deployment Instructions (Render)
+## 12. Deployment Instructions (Render)
 
 To deploy this project as a live web service on [Render](https://render.com):
 
